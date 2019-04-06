@@ -3,7 +3,6 @@
 
   <div v-if="$auth.user" class="uk-section">
     <div v-if="$auth.user.escort" class="uk-container uk-container-small">
-     {{ escort }}
       <div class="uk-margin">
         <div class="card-gray uk-card uk-card-body">
           <h4 class="light">Configuración</h4>
@@ -65,7 +64,7 @@
                       </div>
                     </div>
 
-                    <div class="uk-margin">
+                    <div class="uk-margin uk-text-right">
                       <button class="uk-button" type="submit">Guardar</button>
                     </div>
 
@@ -100,7 +99,7 @@
           <div class="uk-margin">
             <form v-on:submit.prevent="setHour()">
               <div>
-                <div v-if="!escort.calendario" class="uk-child-width-1-2@s uk-grid" uk-grid>
+                <div v-if="this.escort.calendario.length == 0" class="uk-child-width-1-2@s uk-grid" uk-grid>
                   <div v-for="day in days" :key="day.id">
                     <div class="uk-margin">
                       <p class="hl">{{ day.day }} : </p>
@@ -115,9 +114,9 @@
                     </div>
                   </div>
                 </div>
-                <div v-else class="uk-child-width-1-2@s uk-grid" uk-grid>
-                  <div v-for="day in escort.calendario" :key="day.id">
-                    <div class="uk-margin">
+                <div v-else>
+                  <div  class="uk-child-width-1-2@s uk-grid" >
+                    <div v-for="day in escort.calendario"  :key="day.id">
                       <p class="hl">{{ day.day }} : </p>
                       <div class="uk-child-width-1-2@s" uk-grid>
                         <div>
@@ -131,7 +130,7 @@
                   </div>
                 </div>
               </div>
-              <div class="uk-margin">
+              <div class="uk-margin uk-text-right">
                 <button class="uk-button" type="submit">Guardar</button>
               </div>
             </form>
@@ -258,7 +257,7 @@ export default {
   },
   methods:{
     setBasicInformation(){
-      console.log(this.escort.user.nombre)
+
       axios.put('/escorts/' + this.$auth.user.escort.id,{
           precio: this.escort.precio,
           nacionalidad: this.escort.nacionalidad,
@@ -275,12 +274,12 @@ export default {
       })
     },
     setHour(){
-      if(this.escort.calendario=""){
+      if(this.escort.calendario!=""){
         axios.put('/escorts/' + this.$auth.user.escort.id,{
             calendario: this.escort.calendario,
         })
         .then(response => {
-           console.log('saved')
+           console.log('calendario: ' + this.escort.calendario)
         })
         .catch(error => {
 
@@ -290,7 +289,7 @@ export default {
             calendario: this.days,
         })
         .then(response => {
-           console.log('saved')
+           console.log('dias: ' +this.days)
         })
         .catch(error => {
 
