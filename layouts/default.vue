@@ -22,7 +22,7 @@ import Footer from '~/components/Footer'
 
 export default {
   components: {
-     Nav,
+     Navigator,
      Footer
   }
 }
