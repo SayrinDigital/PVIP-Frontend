@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="main-container-content">
-      <!--<Nav></Nav>-->
+      <Navigator></Navigator>
       <nuxt />
       <Footer></Footer>
     </div>
@@ -17,7 +17,7 @@
 
 <script>
 
-import Nav from '~/components/Navigator'
+import Navigator from '~/components/Navigator'
 import Footer from '~/components/Footer'
 
 export default {
