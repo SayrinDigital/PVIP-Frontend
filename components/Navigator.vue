@@ -8,13 +8,13 @@
           <li><a href="#" uk-icon="icon: instagram"></a></li>
         </ul>
       </div>
-      <div v-show="!$auth.loggedIn" class="uk-navbar-item uk-hidden@s">
+      <div v-if="!$auth.loggedIn" class="uk-navbar-item uk-hidden@s">
         <nuxt-link to="/registro" class="light"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: user"></span> Regístrate</nuxt-link>
       </div>
-      <div v-show="!$auth.loggedIn" class="uk-navbar-item">
+      <div v-if="!$auth.loggedIn" class="uk-navbar-item">
         <nuxt-link class="light" to="/login"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: sign-in"></span> Iniciar Sesión</nuxt-link>
       </div>
-      <div v-show="$auth.loggedIn" class="uk-hidden@s">
+      <div v-if="$auth.loggedIn" class="uk-hidden@s">
         <a class="user-button uk-text-capitalize"><span class="uk-icon uk-margin-small-right" uk-icon="icon: user"></span> {{ $auth.user.nombre }}</a>
         <div uk-dropdown>
           <ul class="uk-nav uk-dropdown-nav">
@@ -37,7 +37,7 @@
       </div>
       <div class="uk-navbar-right">
         <div class="uk-navbar-item uk-visible@s">
-          <div v-show="$auth.loggedIn">
+          <div v-if="$auth.loggedIn">
             <a class="user-button  uk-text-capitalize"><span class="uk-icon uk-margin-small-right" uk-icon="icon: user"></span> {{ $auth.user.nombre }}</a>
             <div uk-dropdown>
               <ul class="uk-nav uk-dropdown-nav">
