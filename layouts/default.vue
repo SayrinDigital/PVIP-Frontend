@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="main-container-content">
-      <Nav></Nav>
+      <!--<Nav></Nav>-->
       <nuxt />
-      <Footer></Footer>
+      <!--<Footer></Footer>-->
     </div>
     <div class="uk-position-fixed uk-position-top-left transition-cover" uk-height-viewport>
 
