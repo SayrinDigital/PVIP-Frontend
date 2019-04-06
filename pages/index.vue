@@ -49,9 +49,9 @@ export default {
   },
   mounted(){
 
-    window.onNuxtReady((app) => {
+    /*window.onNuxtReady((app) => {
       this.loadingScreen()
-    })
+    })*/
 
   },
   transition: 'basic',
