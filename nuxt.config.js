@@ -2,6 +2,9 @@ import pkg from './package'
 
 export default {
   mode: 'universal',
+  server: {
+    port: 4600, // default: 3000
+  },
   //Transitions
   transition: {
     name: 'basic',
