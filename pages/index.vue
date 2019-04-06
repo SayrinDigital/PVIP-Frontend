@@ -17,7 +17,6 @@
 <script>
 import Searcher from '~/components/Home/Searcher'
 import GirlCard from '~/components/GirlCard'
-import {mapState} from 'vuex'
 
 export default {
   data(){
