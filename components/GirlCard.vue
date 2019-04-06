@@ -18,7 +18,7 @@ export default {
   props: ['type', 'escort'],
   data() {
     return {
-      baseUrl: 'http://localhost:1337'
+      baseUrl: 'https://api.privadosvip.cl'
     }
   },
   filters: {

@@ -16,7 +16,7 @@
 export default {
   data(){
     return{
-      baseUrl: 'http://localhost:1337'
+      baseUrl: 'https://api.privadosvip.cl'
     }
   },
   props: ['business']

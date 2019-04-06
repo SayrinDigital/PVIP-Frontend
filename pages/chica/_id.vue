@@ -214,7 +214,7 @@ export default {
  },
     data () {
       return {
-        baseUrl: 'http://localhost:1337',
+        baseUrl: 'https://api.privadosvip.cl',
         banners: [ 'https://images.unsplash.com/photo-1549053755-0a207aae1488?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&q=80', 'https://images.unsplash.com/photo-1524860432737-bee41d4136ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80',
         'https://images.unsplash.com/photo-1506691318991-c91e7df669b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=321&q=80',
         'https://images.unsplash.com/photo-1505075135786-46bf381343c9?ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80',

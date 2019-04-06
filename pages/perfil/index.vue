@@ -216,7 +216,7 @@ export default {
       includedservices: null,
       extraservices: null,
       options: ['list', 'of', 'options'],
-      baseUrl: 'http://localhost:1337',
+      baseUrl: 'https://api.privadosvip.cl',
       days: [{
           'day': 'Lunes',
           'start': '',
