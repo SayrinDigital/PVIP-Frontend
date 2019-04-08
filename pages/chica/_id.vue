@@ -98,7 +98,7 @@
      </div>
    </section>
 
-   <section class="uk-section story-section">
+   <!--<section class="uk-section story-section">
 
      <div class="content">
        <div class="uk-container tm-container-medium">
@@ -117,7 +117,7 @@
     </div>
      </div>
 
-   </section>
+   </section>-->
 
    <section class="uk-section">
 
