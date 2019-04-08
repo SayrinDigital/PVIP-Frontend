@@ -258,7 +258,7 @@ export default {
   methods:{
     setBasicInformation(){
 
-      axios.put('/escorts/' + this.$auth.user.escort.id,{
+      axios.put('/escorts/' + this.$auth.user.escort._id,{
           precio: this.escort.precio,
           nacionalidad: this.escort.nacionalidad,
           whatsapp: this.escort.whatsapp,
@@ -275,7 +275,7 @@ export default {
     },
     setHour(){
       if(this.escort.calendario!=""){
-        axios.put('/escorts/' + this.$auth.user.escort.id,{
+        axios.put('/escorts/' + this.$auth.user.escort._id,{
             calendario: this.escort.calendario,
         })
         .then(response => {
@@ -285,7 +285,7 @@ export default {
 
         })
       }else{
-        axios.put('/escorts/' + this.$auth.user.escort.id,{
+        axios.put('/escorts/' + this.$auth.user.escort._id,{
             calendario: this.days,
         })
         .then(response => {
