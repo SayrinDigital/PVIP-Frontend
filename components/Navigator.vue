@@ -30,12 +30,12 @@
   </nav>
   <div uk-sticky="animation: uk-animation-slide-top; cls-active: uk-navbar-sticky; top: 200">
     <nav id="mainnav" class="uk-navbar-container uk-navbar-transparent pv-background-default" uk-navbar>
-      <div class="uk-navbar-left">
+      <!--<div class="uk-navbar-left">
         <div class="uk-navbar-item">
           <nuxt-link to="/"><img width="170" src="/assets/whitelogo.png" alt=""></nuxt-link>
         </div>
       </div>
-      <!--<div class="uk-navbar-right">
+      <div class="uk-navbar-right">
         <div class="uk-navbar-item uk-visible@s">
           <div v-if="$auth.loggedIn">
             <a class="user-button  uk-text-capitalize"><span class="uk-icon uk-margin-small-right" uk-icon="icon: user"></span> {{ $auth.user.nombre }}</a>
