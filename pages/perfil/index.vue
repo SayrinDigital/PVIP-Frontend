@@ -99,7 +99,7 @@
           <div class="uk-margin">
             <form v-on:submit.prevent="setHour()">
               <div>
-                <div v-if="this.escort.calendario.length == 0" class="uk-child-width-1-2@s uk-grid" uk-grid>
+                <div v-if="escort.calendario.length == 0" class="uk-child-width-1-2@s uk-grid" uk-grid>
                   <div v-for="day in days" :key="day.id">
                     <div class="uk-margin">
                       <p class="hl">{{ day.day }} : </p>
@@ -178,7 +178,7 @@ export default {
       data
     } = await axios.get('/etiquetas')
     let services = await axios.get('/escortservicios')
-    let escort = await axios.get('/escorts/' + context.app.$auth.user.escort.id)
+    let escort = await axios.get('/escorts/' + context.app.$auth.user.escort._id)
     return {
       tags: data,
       services: services.data,
