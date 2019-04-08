@@ -28,7 +28,8 @@
       </div>
     </div>
   </nav>
-  <!--<div uk-sticky="animation: uk-animation-slide-top; cls-active: uk-navbar-sticky; top: 200">-->
+  <div>
+  <div uk-sticky="animation: uk-animation-slide-top; cls-active: uk-navbar-sticky; top: 200">-->
     <nav id="mainnav" class="uk-navbar-container uk-navbar-transparent pv-background-default" uk-navbar>
       <div class="uk-navbar-left">
         <div class="uk-navbar-item">
@@ -57,7 +58,8 @@
         </div>
       </div>
     </nav>
-  <!--</div>-->
+  </div>
+</div>
 
   <div class="modal-menu-left">
 
