@@ -47,6 +47,7 @@ export default {
  .img-preloader{
       opacity: 0;
       z-index: 999999;
+      width: 100px;
  }
 
  .main-container-content{
