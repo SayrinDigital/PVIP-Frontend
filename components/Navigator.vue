@@ -6,6 +6,7 @@
         <ul class="uk-iconnav">
           <li><a href="#" uk-icon="icon: facebook"></a></li>
           <li><a href="#" uk-icon="icon: instagram"></a></li>
+          <li><a href="#" uk-icon="icon: twitter"></a></li>
         </ul>
       </div>
       <div v-if="!$auth.loggedIn" class="uk-navbar-item uk-hidden@s">
