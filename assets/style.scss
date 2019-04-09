@@ -50,6 +50,53 @@ hr.uk-hr{
   }
 }
 
+.markdown{
+  h1,h2,h3,h4,h5,h6{
+    color: $hl-color;
+  }
+  ul{
+    li{
+      font-family: $t-font;
+      color: #d1d1d1;
+    }
+  }
+}
+
+.upload-input{
+  font-family: $t-font;
+  font-size: .8rem;
+  border-radius: 180px;
+}
+
+.datetimeinput{
+
+}
+
+.vdp-datepicker{
+  input{
+      border-radius: 180px;
+      border: 0;
+      padding: 10px;
+      font-family: $t-font;
+      font-size: .8rem;
+  }
+}
+
+.watermark{
+  max-width: 130px;
+  user-drag: none;
+user-select: none;
+-moz-user-select: none;
+-webkit-user-drag: none;
+-webkit-user-select: none;
+-ms-user-select: none;
+}
+
+.remove-icon{
+  background-color: #ff5257;
+  color: #fff;
+}
+
 .tm-container-medium{
   max-width: 1360px;
 }
@@ -66,8 +113,22 @@ hr.uk-hr{
 .card-gray{
   background-color: #2b2b2b;
   border-radius: 10px;
+  transition: all 200ms ease-in-out;
+  &:hover{
+
+  }
+  &.hl{
+    background-color: $hl-color;
+  }
   &.body{
     padding: 15px;
+  }
+}
+
+.filepond--wrapper{
+  font-family: $t-font;
+  label{
+    font-family: $t-font;
   }
 }
 
@@ -431,6 +492,17 @@ ul.list-anouncehere{
   }
 }
 
+.uk-button{
+  &.basic{
+    background-color: $hl-color;
+    font-family: $t-font;
+    font-size: 1rem;
+    color: #fff;
+    text-transform: capitalize;
+    border-radius: 180px;
+  }
+}
+
 #login-form{
   .uk-input, .uk-form-label{
     font-size: 1rem;
@@ -502,6 +574,14 @@ ul.list-anouncehere{
     font-size: .8rem;
     border-radius: 10px;
   }
+  .uk-checkbox{
+    font-family: $t-font;
+    font-size: .8rem;
+  }
+  label{
+    font-family: $t-font;
+    font-size: .8rem;
+  }
 }
 
 .uk-form-blank{
@@ -529,6 +609,10 @@ ul.list-anouncehere{
   &:focus{
     background: transparent;
   }
+}
+
+.swal-title, .swal-text{
+  font-family: $t-font;
 }
 
 @media only screen and (min-width: 1400px){

@@ -7,10 +7,15 @@ export const actions = {
       const services  = await axios.get('/servicios')
       const escorts  = await axios.get('/escorts')
       const business  = await axios.get('/negocios')
+      const socials  = await axios.get('/socials')
+      const ads  = await axios.get('/tipoanuncios')
+      const whatsapp = await axios.get('/whatsapps')
 
       commit('categories/setCategories', data)
       commit('services/setServices', services.data)
       commit('escorts/setEscorts', escorts.data)
-      commit('business/setBusiness', business.data)
+      commit('socials/setSocials', socials.data)
+      commit('adstype/setAds', ads.data)
+      commit('whatsapp/setWhatsappMessage', whatsapp.data)
   }
 }

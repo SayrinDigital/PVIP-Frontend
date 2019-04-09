@@ -52,7 +52,7 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: 'Privados VIP',
+    title: 'Privados VIP: Escorts, Acompañantes y Masajes Eróticos',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -75,14 +75,15 @@ export default {
   ** Global CSS
   */
   css: [
-     'vue-multiselect/dist/vue-multiselect.min.css','uikit/dist/css/uikit.css', '@/assets/style.scss','swiper/dist/css/swiper.css'
+     'vue-multiselect/dist/vue-multiselect.min.css','uikit/dist/css/uikit.css', '@/assets/style.scss','swiper/dist/css/swiper.css', 'filepond/dist/filepond.min.css'
   ],
 
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-      {src: '~/plugins/uikit.js', ssr: false },{src: '~/plugins/swiper.js', ssr: false }, { src: '~/plugins/vue-filters.js', ssr: false }
+      {src: '~/plugins/uikit.js', ssr: false },{src: '~/plugins/swiper.js', ssr: false }, { src: '~/plugins/vue-filters.js', ssr: false }, { src: '~/plugins/vue-swal.js' },
+      { src: '~/plugins/uploader.js' }
   ],
 
   /*

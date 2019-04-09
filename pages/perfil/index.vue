@@ -12,7 +12,16 @@
               <div class="uk-flex uk-flex-middle uk-grid-match" uk-grid>
                 <div v-if="escort.avatar" class="uk-width-2-5@m">
                   <div>
-                    <div class="avatar uk-background-cover" uk-img :data-src="baseUrl + escort.avatar.url"></div>
+                    <div class="avatar uk-background-cover uk-position-relative" uk-img :data-src="baseUrl + escort.avatar.url">
+                      <div class="uk-position-bottom-right">
+                        <div class="uk-overlay">
+                          <div uk-form-custom>
+                            <input type="file" @change="uploadProfile($event)">
+                            <button class="uk-button basic" type="button" tabindex="-1"> <span v-if="isuploadingprofilephoto" class="uk-margin-small-right" uk-spinner></span> Cambiar</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div v-if="escort" class="uk-width-3-5@m about-girl">
@@ -65,7 +74,7 @@
                     </div>
 
                     <div class="uk-margin uk-text-right">
-                      <button class="uk-button" type="submit">Guardar</button>
+                      <button class="uk-button basic" type="submit">Guardar</button>
                     </div>
 
                   </form>
@@ -78,19 +87,37 @@
         </div>
       </div>
 
+
+            <div class="uk-margin">
+              <div class="card-gray hour-picker uk-card uk-card-body">
+                <h4 class="light">Datos Extra</h4>
+                  <div class="uk-margin">
+                    <h5 class="light">Fecha de Nacimiento</h5>
+                    <datepicker class="datetimeinput" :language="es" v-model="escort.nacimiento" name="uniquename"></datepicker>
+                  </div>
+                  <div class="uk-margin uk-text-right">
+                    <button class="uk-button basic" @click="setExtra()" type="submit">Guardar</button>
+                  </div>
+              </div>
+            </div>
+
       <div class="uk-margin">
         <div class="card-gray uk-card uk-card-body">
           <h4 class="light">Servicios</h4>
           <div class="uk-margin">
             <h5 class="light">Incluidos</h5>
-            <Multiselect v-model="includedservices" trackBy="nombre" :multiple="true" label="nombre" placeholder="Elegir servicios incluidos" :options="services" deselectLabel="Presionar enter para quitar" selectLabel="Presiona enter para elegir"></Multiselect>
+            <Multiselect :close-on-select="false" v-model="escort.incluidos" trackBy="nombre" :multiple="true" label="nombre" placeholder="Elegir servicios incluidos" :options="services" deselectLabel="Presionar enter para quitar" selectLabel="Presiona enter para elegir"></Multiselect>
           </div>
           <div class="uk-margin">
             <h5 class="light">Adicionales</h5>
-            <Multiselect v-model="extraservices" trackBy="nombre" :multiple="true" label="nombre" placeholder="Elegir servicios incluidos" :options="services" deselectLabel="Presionar enter para quitar" selectLabel="Presiona enter para elegir"></Multiselect>
+            <Multiselect :close-on-select="false" v-model="escort.adicionales" trackBy="nombre" :multiple="true" label="nombre" placeholder="Elegir servicios incluidos" :options="services" deselectLabel="Presionar enter para quitar" selectLabel="Presiona enter para elegir"></Multiselect>
+          </div>
+          <div class="uk-margin uk-text-right">
+            <button class="uk-button basic" @click="setServices()" type="submit">Guardar</button>
           </div>
         </div>
       </div>
+
 
       <div class="uk-margin">
         <div class="card-gray hour-picker uk-card uk-card-body">
@@ -103,27 +130,39 @@
                   <div v-for="day in days" :key="day.id">
                     <div class="uk-margin">
                       <p class="hl">{{ day.day }} : </p>
-                      <div class="uk-child-width-1-2@s" uk-grid>
+                      <div class="uk-child-width-1-4@s" uk-grid>
                         <div>
-                          <input type="text" v-model="day.start" placeholder="09:00" class="uk-input">
+                          <label><input  class="uk-checkbox" type="checkbox" v-model="day.atiende" :checked="day.atiende"> Atiende</label>
                         </div>
                         <div>
-                          <input type="text" v-model="day.end" placeholder="22:00" class="uk-input">
+                          <label v-if="day.atiende"><input  class="uk-checkbox" type="checkbox"  v-model="day.fulltime" :checked="day.fulltime"> Full Time</label>
+                        </div>
+                        <div>
+                          <input v-if="day.atiende" v-bind:class="{  'uk-disabled' : day.fulltime  }" type="text" v-model="day.start" placeholder="09:00" class="uk-input">
+                        </div>
+                        <div>
+                          <input v-if="day.atiende" v-bind:class="{  'uk-disabled' : day.fulltime }" type="text" v-model="day.end" placeholder="22:00" class="uk-input">
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div v-else>
-                  <div  class="uk-child-width-1-2@s uk-grid" >
-                    <div v-for="day in escort.calendario"  :key="day.id">
+                  <div class="uk-child-width-1-2@s uk-grid">
+                    <div v-for="day in escort.calendario" :key="day.id">
                       <p class="hl">{{ day.day }} : </p>
-                      <div class="uk-child-width-1-2@s" uk-grid>
+                      <div class="uk-child-width-1-4@s" uk-grid>
                         <div>
-                          <input type="text" v-model="day.start" placeholder="09:00" class="uk-input">
+                          <label><input class="uk-checkbox" type="checkbox" v-model="day.atiende" :checked="day.atiende"> Atiende</label>
                         </div>
                         <div>
-                          <input type="text" v-model="day.end" placeholder="22:00" class="uk-input">
+                          <label v-if="day.atiende"><input class="uk-checkbox" type="checkbox"   v-model="day.fulltime" :checked="day.fulltime"> Full Time</label>
+                        </div>
+                        <div>
+                          <input v-if="day.atiende" v-bind:class="{  'uk-disabled' : day.fulltime }" type="text" v-model="day.start" placeholder="09:00" class="uk-input">
+                        </div>
+                        <div>
+                          <input v-if="day.atiende" v-bind:class="{  'uk-disabled' : day.fulltime }" type="text" v-model="day.end" placeholder="22:00" class="uk-input">
                         </div>
                       </div>
                     </div>
@@ -131,7 +170,7 @@
                 </div>
               </div>
               <div class="uk-margin uk-text-right">
-                <button class="uk-button" type="submit">Guardar</button>
+                <button class="uk-button basic" type="submit">Guardar</button>
               </div>
             </form>
           </div>
@@ -141,7 +180,10 @@
       <div class="uk-margin" v-if="finaltags">
         <div class="card-gray uk-card uk-card-body">
           <h4 class="light">Etiquetas</h4>
-          <Multiselect :multiple="true" :close-on-select="false" placeholder="Elegir una opción" deselectLabel="Presionar enter para quitar" selectLabel="Presiona enter para elegir" group-values="options" group-label="name" v-model="value" :options="finaltags"></Multiselect>
+          <Multiselect :multiple="true" :close-on-select="false" placeholder="Elegir una opción" deselectLabel="Presionar enter para quitar" selectLabel="Presiona enter para elegir" group-values="options" group-label="name" v-model="escort.etiquetas" :options="finaltags"></Multiselect>
+          <div class="uk-margin uk-text-right">
+            <button class="uk-button basic" @click="setTags()" type="submit">Guardar</button>
+          </div>
         </div>
       </div>
 
@@ -149,13 +191,25 @@
         <div class="card-gray uk-card uk-card-body">
           <h4 class="light">Galería</h4>
           <p>Se permite hasta un máximo de 10 fotos.</p>
-          <div v-if="$auth.user.escort.fotos">
-            <div class="uk-child-width-1-4@m uk-child-width-1-2 uk-grid-medium uk-grid" uk-lightbox="animation: slide" uk-grid>
-              <div v-for="foto in $auth.user.escort.fotos">
-                <a data-type="image" :href="baseUrl + foto.imagen.url">
-                  <div class="uk-background-cover gallery-girl-photo" uk-img :data-src="baseUrl + foto.imagen.url">
+          <form v-if="escort.fotos.length < 10" v-on:submit.prevent="createPhoto()">
+            <div class="uk-margin" uk-margin>
+              <div uk-form-custom="target: true">
+                <input type="file" @change="uploadImage($event)">
+                <input class="uk-input upload-input uk-form-width-medium" type="text" placeholder="Elegir Foto" disabled>
+              </div>
+              <button class="uk-button basic" type="submit"><span v-if="isuploadinggallery" class="uk-margin-small-right" uk-spinner></span>Subir</button>
+            </div>
+          </form>
+          <div v-if="escort.fotos">
+            <div class="uk-child-width-1-4@m uk-child-width-1-2 uk-grid-medium uk-grid" uk-grid>
+              <div v-if="foto.imagen" v-for="foto in escort.fotos">
+                  <div class="uk-background-cover gallery-girl-photo uk-position-relative" uk-img :data-src="baseUrl + foto.imagen.url">
+                    <div class="uk-position-bottom-right">
+                      <div class="uk-overlay">
+                        <a @click="deleteGallery(foto.id)" uk-tooltip="Eliminar" class="uk-icon-button remove-icon" uk-icon="close"></a>
+                      </div>
+                    </div>
                   </div>
-                </a>
               </div>
             </div>
           </div>
@@ -171,6 +225,8 @@
 <script>
 import Multiselect from 'vue-multiselect'
 import axios from '~/plugins/axios'
+import Datepicker from 'vue-moment-datepicker'
+import {en, es} from 'vue-moment-datepicker/dist/locale'
 
 export default {
   async asyncData(context) {
@@ -198,9 +254,20 @@ export default {
           mult = ' (Puedes elegir más de una opción)'
         }
 
+        var options =  this.tags[i].opciones.split(',')
+        var foption = []
+
+        for(var j=0; j<options.length; j++){
+          if(this.tags[i].nombre == 'otros'){
+          foption.push(options[j])
+        }else{
+          foption.push(this.tags[i].nombre + ' ' + options[j])
+        }
+        }
+
         ftags.push({
           name: this.tags[i].nombre + mult,
-          options: this.tags[i].opciones.split(','),
+          options: foption
         })
 
       }
@@ -208,92 +275,220 @@ export default {
     }
   },
   components: {
-    Multiselect
+    Multiselect,
+    Datepicker
   },
   data() {
     return {
       value: null,
       includedservices: null,
       extraservices: null,
-      options: ['list', 'of', 'options'],
+      escortphoto: null,
+      profilephoto: null,
+      isuploadinggallery: null,
+      en: en,
+      es: es,
+      isuploadingprofilephoto: false,
       baseUrl: 'https://api.privadosvip.cl',
       days: [{
           'day': 'Lunes',
           'start': '',
-          'end': ''
+          'end': '',
+          'atiende': true,
+          'fulltime': false
         },
         {
           'day': 'Martes',
           'start': '',
-          'end': ''
+          'end': '',
+          'atiende': true,
+          'fulltime': false
         },
         {
           'day': 'Miércoles',
           'start': '',
-          'end': ''
+          'end': '',
+          'atiende': true,
+          'fulltime': false
         },
         {
           'day': 'Jueves',
           'start': '',
-          'end': ''
+          'end': '',
+          'atiende': true,
+          'fulltime': false
         },
         {
           'day': 'Viernes',
           'start': '',
-          'end': ''
+          'end': '',
+          'atiende': true,
+          'fulltime': false
         },
         {
           'day': 'Sábado',
           'start': '',
-          'end': ''
+          'end': '',
+          'atiende': true,
+          'fulltime': false
         },
         {
           'day': 'Domingo',
           'start': '',
-          'end': ''
+          'end': '',
+          'atiende': true,
+          'fulltime': false
         }
       ]
     }
   },
-  methods:{
-    setBasicInformation(){
+  methods: {
+    deleteGallery(id){
+      axios.delete('/fotos/' + id)
+      .then(response => {
+          window.location.reload(true)
+      })
+      .catch(error => {
+          this.$swal("Oh oh!", "Hubo un error al intentar remover la foto.", "error")
+      })
+    },
+    uploadGallery(id) {
+      let formData = new FormData();
+      formData.append('files', this.escortphoto);
+      formData.append('refId', id);
+      formData.append('ref', 'foto');
+      formData.append('field', 'imagen');
 
+      this.isuploadinggallery = true
+
+      axios.post('/upload',
+          formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          }
+        ).then(response => {
+          window.location.reload(true)
+          //this.$swal("En hora buena!", "Tu foto fue subida satisfactoriamente.", "success")
+        })
+        .catch(error => {
+          this.$swal("Oh oh!", "Hubo un error al intentar subir la foto.", "error")
+          this.isuploadinggallery = false
+          //console.log(error)
+        });
+    },
+    createPhoto() {
+      axios.post('/fotos', {
+          escort: this.escort.id
+        })
+        .then(response => {
+          console.log(response.data)
+          this.uploadGallery(response.data.id)
+        })
+        .catch(error => {
+
+        })
+    },
+    uploadImage(event) {
+      this.escortphoto = event.target.files[0]
+    },
+    uploadProfile(event) {
+      this.profilephoto = event.target.files[0]
+      let formData = new FormData();
+      formData.append('files', this.profilephoto);
+      formData.append('refId', this.escort.id);
+      formData.append('ref', 'escort');
+      formData.append('field', 'avatar');
+      this.isuploadingprofilephoto = true
+
+      axios.post('/upload',
+          formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          }
+        ).then(response => {
+          window.location.reload(true)
+          //this.$swal("En hora buena!", "Tu foto fue subida satisfactoriamente.", "success")
+        })
+        .catch(error => {
+          this.$swal("Oh oh!", "Hubo un error al intentar subir la foto.", "error")
+          //console.log(error)
+          this.isuploadingprofilephoto = false
+        });
+    },
+    setExtra(){
       axios.put('/escorts/' + this.$auth.user.escort._id,{
+        nacimiento: this.escort.nacimiento
+      })
+      .then(response => {
+        this.$swal("Cambios guardados!", "Tus cambios fueron guardados satisfactoriamente.", "success")
+      })
+      .catch(error => {
+        this.$swal("Oh oh!", "Hubo un error al intentar actualizar la información.", "error")
+      })
+    },
+    setBasicInformation() {
+
+      axios.put('/escorts/' + this.$auth.user.escort._id, {
           precio: this.escort.precio,
           nacionalidad: this.escort.nacionalidad,
           whatsapp: this.escort.whatsapp,
           altura: this.escort.altura,
           peso: this.escort.peso,
           acerca: this.escort.acerca
-      })
-      .then(response => {
-         console.log('saved')
-      })
-      .catch(error => {
-
-      })
+        })
+        .then(response => {
+          this.$swal("Cambios guardados!", "Tus cambios fueron guardados satisfactoriamente.", "success")
+        })
+        .catch(error => {
+          this.$swal("Oh oh!", "Hubo un error al intentar actualizar la información.", "error")
+        })
     },
-    setHour(){
-      if(this.escort.calendario!=""){
-        axios.put('/escorts/' + this.$auth.user.escort._id,{
+    setTags() {
+      axios.put('/escorts/' + this.$auth.user.escort._id, {
+          etiquetas: this.escort.etiquetas
+        })
+        .then(response => {
+          this.$swal("Cambios guardados!", "Tus cambios fueron guardados satisfactoriamente.", "success")
+        })
+        .catch(error => {
+          this.$swal("Oh oh!", "Hubo un error al intentar actualizar la información.", "error")
+        })
+    },
+    setServices() {
+      axios.put('/escorts/' + this.$auth.user.escort._id, {
+          incluidos: this.escort.incluidos,
+          adicionales: this.escort.adicionales
+        })
+        .then(response => {
+          this.$swal("Cambios guardados!", "Tus cambios fueron guardados satisfactoriamente.", "success")
+        })
+        .catch(error => {
+          this.$swal("Oh oh!", "Hubo un error al intentar actualizar la información.", "error")
+        })
+    },
+    setHour() {
+      if (this.escort.calendario != "") {
+        axios.put('/escorts/' + this.$auth.user.escort._id, {
             calendario: this.escort.calendario,
-        })
-        .then(response => {
-           console.log('calendario: ' + this.escort.calendario)
-        })
-        .catch(error => {
-
-        })
-      }else{
-        axios.put('/escorts/' + this.$auth.user.escort._id,{
+          })
+          .then(response => {
+            this.$swal("Cambios guardados!", "Tus cambios fueron guardados satisfactoriamente.", "success")
+          })
+          .catch(error => {
+            this.$swal("Oh oh!", "Hubo un error al intentar actualizar la información.", "error")
+          })
+      } else {
+        axios.put('/escorts/' + this.$auth.user.escort._id, {
             calendario: this.days,
-        })
-        .then(response => {
-           console.log('dias: ' +this.days)
-        })
-        .catch(error => {
-
-        })
+          })
+          .then(response => {
+            this.$swal("Cambios guardados!", "Tus cambios fueron guardados satisfactoriamente.", "success")
+          })
+          .catch(error => {
+            this.$swal("Oh oh!", "Hubo un error al intentar actualizar la información.", "error")
+          })
       }
     }
   },

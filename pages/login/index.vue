@@ -72,6 +72,12 @@ export default {
            password: this.password
          }
        })
+       .then(response => {
+
+       })
+       .catch(error => {
+         this.$swal("Oh oh!", "Hubo un error al intentar iniciar sesión. Revisa tus credenciales e intenta nuevamente.", "error")
+       })
     }
   }
 }

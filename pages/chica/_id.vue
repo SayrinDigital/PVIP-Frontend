@@ -8,7 +8,15 @@
          <div class="uk-flex uk-flex-middle uk-grid-match" uk-grid>
            <div v-if="escort.avatar" class="uk-width-2-5@m">
              <div>
-                <div class="avatar uk-background-cover" uk-img :data-src="baseUrl + escort.avatar.url"></div>
+                <div class="avatar uk-background-cover uk-position-relative" uk-img :data-src="baseUrl + escort.avatar.url">
+                  <div class="uk-position-top-left">
+                    <div class="uk-overlay">
+                      <a class="card-gray hl uk-display-block body" :href="'tel:' + escort.whatsapp">
+                       <p style="line-height: 1.5;" class="light uk-margin-remove"><span class="uk-icon" uk-icon="receiver"></span></p>
+                      </a>
+                    </div>
+                  </div>
+                </div>
              </div>
            </div>
            <div  class="uk-width-3-5@m about-girl">
@@ -25,9 +33,9 @@
                   </div>
                 </div>
                 <div>
-                  <div class="card-gray body">
+                  <a class="card-gray body uk-display-block" target="_blank" :href="'https://wa.me/' + escort.whatsapp +'?text=' + finalwspmessage ">
                     <p class="uk-margin-remove"><span class="uk-icon uk-margin-small-right" uk-icon="whatsapp"></span>{{ escort.whatsapp }}</p>
-                  </div>
+                  </a>
                 </div>
                 <div>
                   <div class="card-gray body">
@@ -83,14 +91,9 @@
            </div>
          </div>
 
-         <section class="uk-section uk-section-small">
+         <section v-if="escort.etiquetas" class="uk-section uk-section-small">
            <div class="tags-container card-gray body">
-              <div>Hottie</div>
-              <div>Engdivsh Spoken</div>
-              <div>Rubia</div>
-              <div>No Fuma</div>
-              <div>Depilación Full</div>
-              <div>Hoteles</div>
+              <div v-for="tag in escort.etiquetas" :key="tag.id">{{ tag }}</div>
            </div>
          </section>
 
@@ -119,7 +122,7 @@
 
    </section>-->
 
-   <section class="uk-section">
+   <section>
 
    <div class="uk-container tm-container-medium">
 
@@ -132,12 +135,7 @@
                 <div>
                   <h5 class="hl">Incluidos</h5>
                   <ul class="uk-list list-anouncehere">
-                    <li>Besos piquitos</li>
-                    <li>Chicas en promoción</li>
-                    <li>Garganta Profunda</li>
-                    <li>Rusa</li>
-                    <li>Sexo anal</li>
-                    <li>Sexo oral con condón</li>
+                    <li :uk-tooltip="included.descripcion" v-for="included in escort.incluidos">{{ included.nombre }}</li>
                   </ul>
                 </div>
               </div>
@@ -145,12 +143,7 @@
                 <div>
                   <h5 class="hl">Adicionales</h5>
                   <ul class="uk-list list-anouncehere">
-                    <li>Besos piquitos</li>
-                    <li>Chicas en promoción</li>
-                    <li>Garganta Profunda</li>
-                    <li>Rusa</li>
-                    <li>Sexo anal</li>
-                    <li>Sexo oral con condón</li>
+                    <li :uk-tooltip="adicional.descripcion" v-for="adicional in escort.adicionales">{{ adicional.nombre }}</li>
                   </ul>
                 </div>
               </div>
@@ -158,14 +151,14 @@
         </div>
       </div>
       <div>
-        <div v-if="escort.horario" class="card-gray uk-card uk-card-body">
+        <div v-if="escort.calendario" class="card-gray uk-card uk-card-body">
             <h4 class="light uk-margin-medium-bottom">Horario</h4>
             <div>
                <div class="uk-child-width-expand@m uk-grid-small" uk-grid>
-                 <div v-for="date in escort.horario.horario">
+                 <div v-for="date in escort.calendario">
                    <div class="work-time">
-                      <div class="day uk-text-capitalize">{{ date.dia }}</div>
-                      <div class="hour uk-text-capitalize">{{ date.hora }}</div>
+                      <div class="day uk-text-capitalize">{{ date.day | truncate(3) }}</div>
+                      <div class="hour uk-text-capitalize"><span v-if="date.fulltime">FULL TIME</span><span v-else>{{ date.start }} - {{ date.end }}</span></div>
                    </div>
                  </div>
                </div>
@@ -183,21 +176,22 @@
        <h3 class="light uk-margin-medium-bottom">Galería</h3>
        <div class="uk-child-width-1-4@m uk-child-width-1-2 uk-grid-medium uk-grid" uk-lightbox="animation: slide" uk-grid>
          <div v-if="foto.imagen" v-for="foto in escort.fotos">
-           <a  data-type="image" :href="baseUrl + foto.imagen.url">
+           <a class="uk-position-relative uk-display-block" data-type="image" :href="baseUrl + foto.imagen.url">
              <div class="uk-background-cover gallery-girl-photo" uk-img :data-src="baseUrl + foto.imagen.url">
              </div>
+          <img class="uk-position-center watermark" src="/assets/watermark.png" alt="">
            </a>
          </div>
        </div>
      </div>
    </section>
 
-   <section class="uk-section">
+   <!--<section class="uk-section">
      <div class="uk-container tm-container-medium">
        <h3 class="light uk-margin-medium-bottom">Comentarios</h3>
 
      </div>
-   </section>
+   </section>-->
 
   </div>
 
@@ -206,8 +200,23 @@
 <script>
 
 import axios from '~/plugins/axios'
+import {mapState} from 'vuex'
 
 export default {
+  head () {
+    return {
+      title: this.escort.user.nombre +' | Privados VIP: Escorts, Acompañantes y Masajes Eróticos',
+      meta: [
+        { hid: 'og-title', property: 'og:title', content: this.escort.user.nombre +' | Privados VIP: Escorts, Acompañantes y Masajes Eróticos' },
+        { hid: 'og-sitename', property: 'og:site_name', content: 'Sayrin - Agencia Digital' },
+        { hid: 'og-description', property: 'og:description', content: 'Escorts, Acompañantes y Masajes Eróticos'},
+        { hid: 'description', name: 'description', content: 'Escorts, Acompañantes y Masajes Eróticos' },
+        { hid: 'og-image', name: 'og:image', content: this.baseUrl + this.escort.avatar.url },
+        { hid: 'og-url', name: 'og:url', content: 'https://privadosvip.cl/chica/' +  this.escort._id },
+        // other meta
+      ]
+    }
+  },
   async asyncData ({ params }) {
    let { data } = await axios.get('/escorts/'+ params.id)
    return { escort: data }
@@ -259,6 +268,15 @@ export default {
     },
   methods: {
 
+},
+computed: {
+  ...mapState({
+    wspmessage: state => state.whatsapp.message,
+  }),
+  finalwspmessage: function() {
+    let finalmessage = this.wspmessage[0].mensaje
+    return finalmessage.replace('{{ nombre }}', this.escort.user.nombre)
+  }
 },
 transition: 'basic',
   }
