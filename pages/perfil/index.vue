@@ -91,13 +91,37 @@
             <div class="uk-margin">
               <div class="card-gray hour-picker uk-card uk-card-body">
                 <h4 class="light">Datos Extra</h4>
-                  <div class="uk-margin">
-                    <h5 class="light">Fecha de Nacimiento</h5>
-                    <datepicker class="datetimeinput" :language="es" v-model="escort.nacimiento" name="uniquename"></datepicker>
-                  </div>
-                  <div class="uk-margin uk-text-right">
-                    <button class="uk-button basic" @click="setExtra()" type="submit">Guardar</button>
-                  </div>
+                  <form  v-on:submit.prevent="setExtra()">
+                    <div class="uk-child-width-1-2@s" uk-grid>
+                      <div >
+                        <div>
+                          <h5 class="light">Fecha de Nacimiento</h5>
+                            <vue-moment-datepicker :language="es" class="datetimeinput" v-model="escort.nacimiento" name="uniquename"></vue-moment-datepicker>
+                        </div>
+                      </div>
+                      <div>
+                        <div>
+                          <h5 class="light">Teléfono</h5>
+                          <input v-model="escort.telefono" class="uk-input" placeholder="5694444444">
+                        </div>
+                      </div>
+                      <div>
+                        <div>
+                          <h5 class="light">Cuenta Con Estacionamiento</h5>
+                          <label><input  class="uk-checkbox" type="checkbox" v-model="escort.conestacionamiento" > <span v-if="escort.conestacionamiento">Con </span> <span v-else>Sin </span> Estacionamiento</label>
+                        </div>
+                      </div>
+                      <div>
+                        <div>
+                          <h5 class="light">Ubicación</h5>
+                          <input v-model="escort.ubicacion" class="uk-input" placeholder="Providencia, Santiago">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="uk-margin uk-text-right">
+                      <button class="uk-button basic"type="submit">Guardar</button>
+                    </div>
+                  </form>
               </div>
             </div>
 
@@ -106,11 +130,11 @@
           <h4 class="light">Servicios</h4>
           <div class="uk-margin">
             <h5 class="light">Incluidos</h5>
-            <Multiselect :close-on-select="false" v-model="escort.incluidos" trackBy="nombre" :multiple="true" label="nombre" placeholder="Elegir servicios incluidos" :options="services" deselectLabel="Presionar enter para quitar" selectLabel="Presiona enter para elegir"></Multiselect>
+              <Multiselect :close-on-select="false" v-model="escort.incluidos" trackBy="nombre" :multiple="true" label="nombre" placeholder="Elegir servicios incluidos" :options="services" deselectLabel="Presionar enter para quitar" selectLabel="Presiona enter para elegir"></Multiselect>
           </div>
           <div class="uk-margin">
             <h5 class="light">Adicionales</h5>
-            <Multiselect :close-on-select="false" v-model="escort.adicionales" trackBy="nombre" :multiple="true" label="nombre" placeholder="Elegir servicios incluidos" :options="services" deselectLabel="Presionar enter para quitar" selectLabel="Presiona enter para elegir"></Multiselect>
+              <Multiselect :close-on-select="false" v-model="escort.adicionales" trackBy="nombre" :multiple="true" label="nombre" placeholder="Elegir servicios incluidos" :options="services" deselectLabel="Presionar enter para quitar" selectLabel="Presiona enter para elegir"></Multiselect>
           </div>
           <div class="uk-margin uk-text-right">
             <button class="uk-button basic" @click="setServices()" type="submit">Guardar</button>
@@ -180,7 +204,9 @@
       <div class="uk-margin" v-if="finaltags">
         <div class="card-gray uk-card uk-card-body">
           <h4 class="light">Etiquetas</h4>
-          <Multiselect :multiple="true" :close-on-select="false" placeholder="Elegir una opción" deselectLabel="Presionar enter para quitar" selectLabel="Presiona enter para elegir" group-values="options" group-label="name" v-model="escort.etiquetas" :options="finaltags"></Multiselect>
+
+            <Multiselect :multiple="true" :close-on-select="false" placeholder="Elegir una opción" deselectLabel="Presionar enter para quitar" selectLabel="Presiona enter para elegir" group-values="options" group-label="name" v-model="escort.etiquetas" :options="finaltags"></Multiselect>
+
           <div class="uk-margin uk-text-right">
             <button class="uk-button basic" @click="setTags()" type="submit">Guardar</button>
           </div>
@@ -194,8 +220,8 @@
           <form v-if="escort.fotos.length < 10" v-on:submit.prevent="createPhoto()">
             <div class="uk-margin" uk-margin>
               <div uk-form-custom="target: true">
-                <input type="file" @change="uploadImage($event)">
-                <input class="uk-input upload-input uk-form-width-medium" type="text" placeholder="Elegir Foto" disabled>
+                <input multiple="true"  type="file" @change="uploadImage($event)">
+                <input class="uk-input upload-input uk-form-width-medium" type="text" placeholder="Elegir Fotografías" disabled>
               </div>
               <button class="uk-button basic" type="submit"><span v-if="isuploadinggallery" class="uk-margin-small-right" uk-spinner></span>Subir</button>
             </div>
@@ -225,7 +251,6 @@
 <script>
 import Multiselect from 'vue-multiselect'
 import axios from '~/plugins/axios'
-import Datepicker from 'vue-moment-datepicker'
 import {en, es} from 'vue-moment-datepicker/dist/locale'
 
 export default {
@@ -276,7 +301,6 @@ export default {
   },
   components: {
     Multiselect,
-    Datepicker
   },
   data() {
     return {
@@ -286,9 +310,8 @@ export default {
       escortphoto: null,
       profilephoto: null,
       isuploadinggallery: null,
-      en: en,
-      es: es,
       isuploadingprofilephoto: false,
+      es: es,
       baseUrl: 'https://api.privadosvip.cl',
       days: [{
           'day': 'Lunes',
@@ -352,14 +375,19 @@ export default {
           this.$swal("Oh oh!", "Hubo un error al intentar remover la foto.", "error")
       })
     },
-    uploadGallery(id) {
+    uploadGallery(id, position) {
       let formData = new FormData();
-      formData.append('files', this.escortphoto);
+      formData.append('files', this.escortphoto[position]);
       formData.append('refId', id);
       formData.append('ref', 'foto');
       formData.append('field', 'imagen');
+      console.log(position)
+      console.log(this.escortphoto[position])
 
       this.isuploadinggallery = true
+
+      //console.log(photo)
+
 
       axios.post('/upload',
           formData, {
@@ -368,7 +396,7 @@ export default {
             }
           }
         ).then(response => {
-          window.location.reload(true)
+          //window.location.reload(true)
           //this.$swal("En hora buena!", "Tu foto fue subida satisfactoriamente.", "success")
         })
         .catch(error => {
@@ -378,19 +406,40 @@ export default {
         });
     },
     createPhoto() {
-      axios.post('/fotos', {
-          escort: this.escort.id
-        })
-        .then(response => {
-          console.log(response.data)
-          this.uploadGallery(response.data.id)
-        })
-        .catch(error => {
 
-        })
+      var isuploading = false
+      var vm = this
+
+      for(let i=0; i<this.escortphoto.length; i++){
+
+        var photo = this.escortphoto[i]
+
+
+                     if(i<=this.escortphoto.length){
+                       this.$swal("En hora buena!", "Tus fotos fueron subidas satisfactoriamente.", "success")
+                       window.location.reload(true)
+                     }
+
+           axios.post('/fotos', {
+               escort: this.escort.id
+             })
+             .then(function(response) {
+               console.log('created photo')
+               vm.uploadGallery(response.data.id, i)
+             })
+             .catch(function(error)  {
+
+             })
+
+      }
+      //window.location.reload(true)
     },
     uploadImage(event) {
-      this.escortphoto = event.target.files[0]
+      if(event.target.files.length>10){
+        this.$swal("Oh oh!", "Solo puedes subir un máximo de 10 fotografías.", "error")
+      }else{
+              this.escortphoto = event.target.files
+      }
     },
     uploadProfile(event) {
       this.profilephoto = event.target.files[0]
@@ -419,7 +468,10 @@ export default {
     },
     setExtra(){
       axios.put('/escorts/' + this.$auth.user.escort._id,{
-        nacimiento: this.escort.nacimiento
+        nacimiento: this.escort.nacimiento,
+        telefono: this.escort.telefono,
+        conestacionamiento: this.escort.conestacionamiento,
+        ubicacion: this.escort.ubicacion
       })
       .then(response => {
         this.$swal("Cambios guardados!", "Tus cambios fueron guardados satisfactoriamente.", "success")

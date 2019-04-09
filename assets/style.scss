@@ -44,6 +44,22 @@ p{
   }
 }
 
+.uk-lightbox{
+  &:after{
+    content: '';
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    z-index: 999999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('https://privadosvip.cl/assets/watermark.png');
+  }
+}
+
 hr.uk-hr{
   &.light{
     border-top: 1px solid #565656;
@@ -600,6 +616,9 @@ ul.list-anouncehere{
     font-size: .85rem;
     font-family: $t-font;
     color: #d1d1d1;
+    border-style: dashed;
+    border-color: #d1d1d1;
+    border-radius: 10px;
   }
   &.simple{
     font-size: .9rem;

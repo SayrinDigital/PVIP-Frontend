@@ -9,9 +9,9 @@
            <div v-if="escort.avatar" class="uk-width-2-5@m">
              <div>
                 <div class="avatar uk-background-cover uk-position-relative" uk-img :data-src="baseUrl + escort.avatar.url">
-                  <div class="uk-position-top-left">
+                  <div v-if="escort.telefono" class="uk-position-top-left">
                     <div class="uk-overlay">
-                      <a class="card-gray hl uk-display-block body" :href="'tel:' + escort.whatsapp">
+                      <a class="card-gray hl uk-display-block body" :href="'tel:' + escort.telefono">
                        <p style="line-height: 1.5;" class="light uk-margin-remove"><span class="uk-icon" uk-icon="receiver"></span></p>
                       </a>
                     </div>
@@ -32,7 +32,7 @@
                     <p class="uk-margin-remove"><span class="uk-icon uk-margin-small-right" uk-icon="world"></span>{{ escort.nacionalidad }}</p>
                   </div>
                 </div>
-                <div>
+                <div v-if="escort.whatsapp" >
                   <a class="card-gray body uk-display-block" target="_blank" :href="'https://wa.me/' + escort.whatsapp +'?text=' + finalwspmessage ">
                     <p class="uk-margin-remove"><span class="uk-icon uk-margin-small-right" uk-icon="whatsapp"></span>{{ escort.whatsapp }}</p>
                   </a>
@@ -174,7 +174,7 @@
    <section v-if="escort.fotos" class="uk-section">
      <div class="uk-container tm-container-medium">
        <h3 class="light uk-margin-medium-bottom">Galería</h3>
-       <div class="uk-child-width-1-4@m uk-child-width-1-2 uk-grid-medium uk-grid" uk-lightbox="animation: slide" uk-grid>
+       <div class="uk-child-width-1-4@m uk-child-width-1-2 uk-grid-medium uk-grid" ref="lightbox" uk-lightbox="animation: slide" uk-grid>
          <div v-if="foto.imagen" v-for="foto in escort.fotos">
            <a class="uk-position-relative uk-display-block" data-type="image" :href="baseUrl + foto.imagen.url">
              <div class="uk-background-cover gallery-girl-photo" uk-img :data-src="baseUrl + foto.imagen.url">
@@ -201,6 +201,11 @@
 
 import axios from '~/plugins/axios'
 import {mapState} from 'vuex'
+
+let UIkit;
+if (process.browser) {
+  UIkit = require('uikit');
+}
 
 export default {
   head () {
@@ -264,10 +269,13 @@ export default {
     },
     mounted() {
       //this.mySwiper.slideTo(3, 1000, false
+      const { lightbox } = this.$refs
 
     },
   methods: {
-
+   showing(){
+     console.log('owo')
+   }
 },
 computed: {
   ...mapState({

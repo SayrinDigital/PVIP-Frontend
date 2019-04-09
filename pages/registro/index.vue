@@ -252,6 +252,15 @@ export default {
           this.errormessage = null
           if(this.registertype == 'Escort' || this.registertype == 'Negocio'){
              this.$swal("Estamos casi listos! ", "Acabamos de recibir tu solicitud, te enviaremos un mensaje al correo que nos dejaste.", "success")
+             axios.post('/api/notifyregister',{
+               email: this.email
+             })
+             .then(response => {
+
+             })
+             .catch(error => {
+               
+             })
             //this.successmessage = ""
           }else{
             this.successmessage = "Gracias por registrarte. Puedes ingresar con tus credenciales ya!"

@@ -82,8 +82,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-      {src: '~/plugins/uikit.js', ssr: false },{src: '~/plugins/swiper.js', ssr: false }, { src: '~/plugins/vue-filters.js', ssr: false }, { src: '~/plugins/vue-swal.js' },
-      { src: '~/plugins/uploader.js' }
+      {src: '~/plugins/uikit.js', ssr: false },{src: '~/plugins/swiper.js', ssr: false }, { src: '~/plugins/vue-filters.js', ssr: false }, { src: '~/plugins/vue-swal.js'},
+      { src: '~/plugins/uploader.js' }, { src: '~/plugins/vue-moment-datepicker.js', ssr: false }
   ],
 
   /*
@@ -118,6 +118,7 @@ auth: {
     logout: '/login'
   }
 },
+serverMiddleware: ['~/api/index.js'],
 
   /*
   ** Build configuration
@@ -126,6 +127,10 @@ auth: {
     /*
     ** You can extend webpack config here
     */
+    transpile: ['vue-moment-datepicker'],
+    vendor: [
+      'vue-moment-datepicker'
+    ],
     extend(config, ctx) {
     }
   }
