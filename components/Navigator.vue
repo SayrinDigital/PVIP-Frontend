@@ -4,7 +4,7 @@
     <div class="uk-navbar-right">
       <div class="uk-navbar-item">
         <ul class="uk-iconnav">
-          <li :key="social.id" v-for="social in socials"><a :href="social.url" :uk-icon="'icon:' + social.nombre"></a></li>
+          <li :key="social.id" v-for="social in socials"><a :href="social.url" target="_blank" :uk-icon="'icon:' + social.nombre"></a></li>
         </ul>
       </div>
       <div v-if="!$auth.loggedIn" class="uk-navbar-item uk-hidden@s">
