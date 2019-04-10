@@ -61,6 +61,9 @@ export default {
     link: [
       { rel: 'icon', type: 'image/png', href: '/assets/preloader.png' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700|Playfair+Display:400,700' }
+    ],
+    script: [
+      { src: '/js/salesiq.js', body: true },
     ]
   },
 
