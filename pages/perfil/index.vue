@@ -58,7 +58,7 @@
                       <div>
                         <div class="card-gray body">
                           <div class="uk-inline">
-                            <span class="uk-form-icon" uk-icon="icon: user"></span>
+                            <span><img width="20" class="uk-margin-small-right" src="/assets/icons/height.svg" alt=""></span>
                             <input class="uk-input uk-form-blank simple" v-model="escort.altura" placeholder="1.50 cm" type="text">
                           </div>
                         </div>
@@ -66,7 +66,7 @@
                       <div>
                         <div class="card-gray body">
                           <div class="uk-inline">
-                            <span class="uk-form-icon" uk-icon="icon: hashtag"></span>
+                            <span><img width="20" class="uk-margin-small-right" src="/assets/icons/weight.svg" alt=""></span>
                             <input class="uk-input uk-form-blank simple" v-model="escort.peso" placeholder="86 kg." type="text">
                           </div>
                         </div>

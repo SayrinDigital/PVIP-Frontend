@@ -39,12 +39,12 @@
                 </div>
                 <div>
                   <div class="card-gray body uk-text-center">
-                    <p class="uk-margin-remove uk-flex uk-flex-middle uk-display-inline"><img width="20" class="uk-margin-small-right" src="/assets/icons/weight.svg" alt="">{{ escort.altura }} cm.</p>
+                    <p class="uk-margin-remove uk-flex uk-flex-middle uk-display-inline"><img width="20" class="uk-margin-small-right" src="/assets/icons/weight.svg" alt="">{{ escort.altura }} kg.</p>
                   </div>
                 </div>
                 <div>
                   <div class="card-gray body">
-                    <p class="uk-margin-remove uk-display-inline"><img width="22" class="uk-margin-small-right" src="/assets/icons/ruler.svg" alt="">{{ escort.peso }} kg.</p>
+                    <p class="uk-margin-remove uk-display-inline"><img width="22" class="uk-margin-small-right" src="/assets/icons/ruler.svg" alt="">{{ escort.peso }} cm.</p>
                   </div>
                 </div>
               </div>
@@ -126,7 +126,7 @@
 
    <div class="uk-container tm-container-medium">
 
-    <div class="uk-child-width-1-2@m uk-grid-match" uk-grid>
+    <div class="uk-child-width-1-2@s" uk-grid="masonry: true">
       <div>
         <div class="card-gray uk-card uk-card-body">
             <h4 class="light uk-margin-medium-bottom">Servicios</h4>
@@ -165,6 +165,19 @@
             </div>
         </div>
       </div>
+      <div>
+        <div class="card-gray uk-card uk-card-body"></div>
+      </div>
+      <div>
+        <div  class="card-gray uk-card uk-card-body">
+          <h4 class="light">Calificaciones</h4>
+          <p>La escort no cuenta con calificaciones.</p>
+          <div class="uk-margin uk-text-right">
+            <button @click="firstqualify()" class="uk-button basic">Sé el primero en calificarla!</button>
+          </div>
+        </div>
+      </div>
+
     </div>
 
    </div>
@@ -275,6 +288,9 @@ export default {
   methods: {
    showing(){
      console.log('owo')
+   },
+   firstqualify(){
+     this.$swal("Oh oh!", "Tienes que ser cliente registrado para calificar.", "error")
    }
 },
 computed: {

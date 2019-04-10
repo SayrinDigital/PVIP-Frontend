@@ -3,7 +3,7 @@
 
   <div class="uk-container tm-container-medium uk-text-center">
 
-    <h3 class="light">Encuentra tu experiencia perfecta.</h3>
+    <h3 class="light">Date un gusto con una chica exclusiva.</h3>
 
     <nav class="uk-navbar-container" uk-navbar>
       <div class="uk-navbar-left">

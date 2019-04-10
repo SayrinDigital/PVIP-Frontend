@@ -94,12 +94,27 @@
           </ul>
         </li>
         <li class="nav-item">
+          <a href="#modal-tips" uk-toggle>Consejos</a>
+        </li>
+        <li class="nav-item">
           <nuxt-link to="/anunciate">Publícate</nuxt-link>
         </li>
       </ul>
     </div>
 
   </div>
+
+  <div id="modal-tips" uk-modal>
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <div class="uk-modal-body">
+          <h1 class="uk-text-center">Consejos</h1>
+            <ul class="uk-list uk-list-bullet">
+              <li v-for="tip in tips" :key="tip.id"><p>{{ tip.tip }}</p></li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 </div>
 </template>
@@ -131,12 +146,16 @@ export default {
     services: state => state.services.services,
     escorts: state => state.escorts.escorts,
     socials: state => state.socials.socials,
+    tips: state => state.tips.tips,
   })
 },
   mounted() {
     this.loadAnimation()
   },
   methods: {
+    openTips(){
+      this.$swal("Estamos casi listos! ", "Acabamos de recibir tu solicitud, te enviaremos un mensaje al correo que nos dejaste.", "success")
+    },
     loadAnimation() {
       this.tl = new TimelineLite({
         paused: true

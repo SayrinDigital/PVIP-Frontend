@@ -1,15 +1,14 @@
 <template>
 <div>
 
-  <section class="uk-section  uk-cover-container">
-    <video class="low-opacity" autoplay muted loop playsinline uk-cover>
-      <source src="https://api.privadosvip.cl/uploads/33409131994d49e9aeda20837539f81b.mp4">
+  <section v-if="anunciate" class="uk-section  uk-cover-container">
+    <video v-if="anunciate.cover" class="low-opacity" autoplay muted loop playsinline uk-cover>
+      <source :src="'https://api.privadosvip.cl/' + anunciate.cover.url ">
     </video>
     <div class="uk-container tm-container-medium uk-position-relative">
       <div class="uk-width-large uk-text-center uk-margin-auto">
         <h1 class="light">Publícate</h1>
-        <p>Bienvenida, sabemos que tu tiempo es valioso y no queremos abrumarte con las innumerables razones por las que debes anunciar con nosotros, pero si te contaremos algo, somos Líderes en Resultados, que no te cuenten cuentos, con nosotros conseguirás
-          los clientes respetuosos y solventes que buscas, estás a solo un paso de tomar una excelente decisión.</p>
+        <p>{{ anunciate.descripcion }}</p>
       </div>
     </div>
   </section>
@@ -62,11 +61,16 @@
 </template>
 
 <script>
+import axios from '~/plugins/axios'
 import {mapState} from 'vuex'
 import VueMarkdown from 'vue-markdown'
 
 export default {
 
+  async asyncData ({ params }) {
+   let { data } = await axios.get('/anunciates/')
+   return { anunciate: data[0] }
+ },
   transition: 'basic',
   computed: {
   ...mapState({
