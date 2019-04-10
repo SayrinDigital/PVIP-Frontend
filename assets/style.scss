@@ -265,6 +265,8 @@ a{
   }
 }
 
+
+
 .service-card{
   transition: all 200ms ease-in-out;
   .first-section{
@@ -280,14 +282,14 @@ a{
 .girl-card{
   transition: all 200ms ease-in-out;
   .first-section{
-    min-height: 400px;
+    min-height: 407px;
     border-radius: 10px;
     /*box-shadow: 0px 30px 30px rgba(0,0,0,0.05);*/
   }
 
   .basic-section{
     border-radius: 10px;
-    min-height: 260px;
+    min-height: 160px;
   }
 
   .name{
@@ -363,11 +365,12 @@ a{
       display: inline-block;
       color: #fff;
       font-family: $t-font;
-      background-color: #989898;
+      background-color: #3b3b3b;
       border-radius: 180px;
       padding: 8px 15px;
       margin-right: 10px;
       font-size: .7rem;
+      margin-bottom: 10px;
     }
   }
   .location-icon{
@@ -632,6 +635,85 @@ ul.list-anouncehere{
 
 .swal-title, .swal-text{
   font-family: $t-font;
+}
+
+.main-grid{
+  article{
+    display: block;
+    &.article-escort{
+      float: left;
+      .bg{
+        border-radius: 10px;
+      }
+      &.first-section{
+         .bg{
+           height: 407px;
+         }
+          width: 25%;
+      }
+      &.medium-section{
+        .bg{
+          height: 164px;
+        }
+          width: 25%;
+      }
+      &.basic-section{
+        .bg{
+          height: 164px;
+        }
+        width: 12.5%;
+      }
+    }
+    .girl-card{
+      padding: 5px;
+    }
+  }
+}
+
+@media (max-width: 900px){
+  .main-grid{
+    article{
+      &.article-escort{
+        &.first-section{
+          width: 33.3%;
+        }
+        &.medium-section{
+          width: 33.3%;
+        }
+        &.basic-section{
+          width: 16.6%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 599px){
+  .main-grid{
+    article{
+      &.article-escort{
+        float: left;
+        &.first-section{
+          width: 50%;
+        }
+        &.medium-section{
+          width: 50%;
+        }
+        &.basic-section{
+          width: 33.3%;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+@media (min-width: 960px){
+.uk-child-width-1-8\@m > * {
+    width: calc(100% * 1 / 8.001);
+}
 }
 
 @media only screen and (min-width: 1400px){

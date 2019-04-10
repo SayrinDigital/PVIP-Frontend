@@ -3,11 +3,16 @@
   <Searcher></Searcher>
   <div class="uk-section">
     <div class="uk-container tm-container-medium">
-      <div class="uk-child-width-1-4@m uk-child-width-1-2 uk-grid-small  uk-grid" uk-grid>
+      <!--<div class="uk-child-width-1-4@m uk-child-width-1-2 uk-grid-small  uk-grid" uk-grid="masonry: true">
         <GirlCard type="hlgirl" :escort="escort"  v-for="escort in firsthalf" :key="escort.id"></GirlCard>
-      </div>
-      <div class="uk-child-width-1-6@m uk-child-width-1-3 uk-grid-small  uk-grid" uk-grid>
+      </div>--->
+      <!--<div class="uk-child-width-1-8@m uk-child-width-1-3 uk-grid-small  uk-grid" uk-grid>
         <GirlCard type="basicgirl" :escort="escort"  v-for="escort in secondhalf" :key="escort.id"></GirlCard>
+      </div>-->
+      <div class="main-grid">
+        <GirlCard v-if="!escort.user.blocked" type="hlgirl" :escort="escort" v-for="escort in firsthalf" :key="escort.id"></GirlCard>
+        <GirlCard v-if="!escort.user.blocked" type="mediumgirl" :escort="escort" v-for="escort in secondhalf" :key="escort.id"></GirlCard>
+        <GirlCard v-if="!escort.user.blocked" type="basicgirl" :escort="escort" v-for="escort in thirdhalf" :key="escort.id"></GirlCard>
       </div>
     </div>
   </div>
@@ -33,13 +38,18 @@ export default {
    },
    firsthalf(){
      var esc = this.escorts
-     let halfWayThough = Math.floor(esc.length / 2)
-     return esc.slice(0, halfWayThough)
+     let halfWayThough = Math.floor(esc.length / 3)
+     return esc.slice(0, halfWayThough+1)
    },
    secondhalf(){
      var esc = this.escorts
-     let halfWayThough = Math.floor(esc.length / 2)
-     return esc.slice(halfWayThough, esc.length)
+     let halfWayThough = Math.floor(esc.length / 3)
+     return esc.slice(halfWayThough+1, halfWayThough*2)
+   },
+   thirdhalf(){
+     var esc = this.escorts
+     let halfWayThough = Math.floor(esc.length / 3)
+     return esc.slice(halfWayThough*2, esc.length)
    }
   },
 

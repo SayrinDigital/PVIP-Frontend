@@ -18,7 +18,7 @@
       </div>
     </nav>
 
-    <h5 class="light">Etiquetas Populares</h5>
+    <!--<h5 class="light">Etiquetas Populares</h5>
 
     <div class="tag-list uk-text-center">
       <div>Con Video</div>
@@ -26,7 +26,7 @@
       <div>Con Experiencias</div>
       <div>Disponible Ahora</div>
       <div>En Promoción</div>
-    </div>
+    </div>-->
 
   </div>
 

@@ -21,7 +21,7 @@
            </div>
            <div  class="uk-width-3-5@m about-girl">
              <div class="content">
-               <h1 class="light"><span v-if="escort.user" class="uk-text-capitalize">{{ escort.user.nombre }}</span>  <span class="price">{{ escort.precio | currency('CLP', 0, { thousandsSeparator: '.' }) }}/hr</span> </h1>
+               <h1 class="light"><span v-if="escort.user" class="uk-text-capitalize">{{ escort.user.nombre }}</span>  <span class="price">{{ escort.precio | currency('CLP ', 0, { thousandsSeparator: '.' }) }}/hr</span> </h1>
 
                <p class="tag-title uk-margin-remove">Sobre Mi</p>
                <p class="description uk-margin-remove-top">{{ escort.acerca }}</p>
@@ -38,13 +38,13 @@
                   </a>
                 </div>
                 <div>
-                  <div class="card-gray body">
-                    <p class="uk-margin-remove"><span class="uk-icon uk-margin-small-right" uk-icon="user"></span>{{ escort.altura }}</p>
+                  <div class="card-gray body uk-text-center">
+                    <p class="uk-margin-remove uk-flex uk-flex-middle uk-display-inline"><img width="20" class="uk-margin-small-right" src="/assets/icons/weight.svg" alt="">{{ escort.altura }} cm.</p>
                   </div>
                 </div>
                 <div>
                   <div class="card-gray body">
-                    <p class="uk-margin-remove"><span class="uk-icon uk-margin-small-right" uk-icon="hashtag"></span>{{ escort.peso }}</p>
+                    <p class="uk-margin-remove uk-display-inline"><img width="22" class="uk-margin-small-right" src="/assets/icons/ruler.svg" alt="">{{ escort.peso }} kg.</p>
                   </div>
                 </div>
               </div>
