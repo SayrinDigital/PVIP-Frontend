@@ -466,10 +466,10 @@ export default {
       let fscore = []
 
       var lugar = 0, llamada = 0, lugaratencion = 0, ppersonal = 0, fisico = 0, rostro = 0, busto = 0,
-      trasero = 0, servicio = 0, besos = 0, quejidos = 0, mpelvicos = 0, oral = 0, vaginal = 0, anal = 0
+      trasero = 0, servicio = 0, besos = 0, quejidos = 0, igualfotos = 0, oral = 0, vaginal = 0, anal = 0
 
       var qllamada = 0, qlugaratencion = 0, qppersonal = 0, qrostro = 0, qbusto = 0,
-      qtrasero = 0, qbesos = 0, qquejidos = 0, qmpelvicos = 0, qoral = 0, qvaginal = 0, qanal = 0
+      qtrasero = 0, qbesos = 0, qquejidos = 0, qigualfotos = 0, qoral = 0, qvaginal = 0, qanal = 0
 
 
 
@@ -503,17 +503,9 @@ export default {
                             trasero += parseFloat(resumen[j].campos[y].puntaje)
                             qtrasero++
                           break;
-                          case 'Besos':
-                              besos += parseFloat(resumen[j].campos[y].puntaje)
-                              qbesos++
-                            break;
-                            case 'Quejidos':
-                                quejidos += parseFloat(resumen[j].campos[y].puntaje)
-                                qquejidos++
-                              break;
-                              case 'Mov. Pélvicos':
-                                  mpelvicos += parseFloat(resumen[j].campos[y].puntaje)
-                                  qmpelvicos++
+                              case 'Igual Que En Las Fotos':
+                                  igualfotos += parseFloat(resumen[j].campos[y].puntaje)
+                                  qigualfotos++
                                 break;
                                 case 'Sexo Oral':
                                     oral += parseFloat(resumen[j].campos[y].puntaje)
@@ -535,7 +527,7 @@ export default {
 
       lugar = (llamada + lugaratencion + ppersonal) / (qllamada + qlugaratencion + qppersonal)
       fisico = (rostro + busto + trasero) / (qrostro + qbusto + qtrasero)
-      servicio = (besos + quejidos + mpelvicos + oral + vaginal + anal) / (qbesos + qquejidos + qmpelvicos + qoral + qvaginal + qanal)
+      servicio = (igualfotos + oral + vaginal + anal) / (qigualfotos + qoral + qvaginal + qanal)
 
 
      this.finalscore = [
@@ -580,16 +572,8 @@ export default {
          puntaje: servicio,
          car: [
            {
-             nombre : "Besos",
-             puntaje: besos/qbesos
-           },
-           {
-             nombre : "Quejidos",
-             puntaje: quejidos/qquejidos
-           },
-           {
-             nombre : "Mov. Pélvicos",
-             puntaje: mpelvicos / qmpelvicos
+             nombre : "Igual Que En Las Fotos",
+             puntaje: igualfotos / qigualfotos
            },
            {
              nombre : "Sexo Oral",
