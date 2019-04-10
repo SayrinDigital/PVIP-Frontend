@@ -713,12 +713,21 @@ ul.list-anouncehere{
         float: left;
         &.first-section{
           width: 50%;
+          .bg{
+            height: 290px;
+          }
         }
         &.medium-section{
           width: 50%;
+          .bg{
+            height: 114px;
+          }
         }
         &.basic-section{
           width: 33.3%;
+          .bg{
+            height: 114px;
+          }
         }
       }
     }

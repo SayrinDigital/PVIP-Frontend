@@ -39,12 +39,12 @@
                 </div>
                 <div>
                   <div class="card-gray body uk-text-center">
-                    <p class="uk-margin-remove uk-flex uk-flex-middle uk-display-inline"><img width="20" class="uk-margin-small-right" src="/assets/icons/weight.svg" alt="">{{ escort.altura }} kg.</p>
+                    <p class="uk-margin-remove uk-flex uk-flex-middle uk-display-inline"><img width="20" class="uk-margin-small-right" src="/assets/icons/weight.svg" alt="">{{ escort.peso }} kg.</p>
                   </div>
                 </div>
                 <div>
                   <div class="card-gray body">
-                    <p class="uk-margin-remove uk-display-inline"><img width="22" class="uk-margin-small-right" src="/assets/icons/ruler.svg" alt="">{{ escort.peso }} cm.</p>
+                    <p class="uk-margin-remove uk-display-inline"><img width="22" class="uk-margin-small-right" src="/assets/icons/ruler.svg" alt="">{{ escort.altura }} cm.</p>
                   </div>
                 </div>
               </div>
@@ -166,13 +166,13 @@
         </div>
       </div>
       <div>
-        <div class="card-gray uk-card uk-card-body"></div>
+        <div class="card-gray uk-card uk-card-body" style="opacity: 0;"></div>
       </div>
       <div>
         <div  class="card-gray uk-card uk-card-body">
           <h4 class="light">Calificaciones</h4>
           <p>La escort no cuenta con calificaciones.</p>
-          <div class="uk-margin uk-text-right">
+          <div class="uk-margin uk-text-center">
             <button @click="firstqualify()" class="uk-button basic">Sé el primero en calificarla!</button>
           </div>
         </div>

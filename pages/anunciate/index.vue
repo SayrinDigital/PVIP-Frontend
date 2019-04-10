@@ -19,7 +19,7 @@
       <h2 class="uk-text-center light uk-margin-large-bottom">Valores de Publicaciones</h2>
       <div class="uk-child-width-expand@m" uk-grid>
         <div v-for="ad in ads">
-          <VueMarkdown class="markdown">{{ ad.contenido }}</VueMarkdown>
+          <VueMarkdown class="markdown uk-text-left@s uk-text-center">{{ ad.contenido }}</VueMarkdown>
         </div>
       </div>
     </div>

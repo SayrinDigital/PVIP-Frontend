@@ -58,16 +58,28 @@
                       <div>
                         <div class="card-gray body">
                           <div class="uk-inline">
-                            <span><img width="20" class="uk-margin-small-right" src="/assets/icons/height.svg" alt=""></span>
-                            <input class="uk-input uk-form-blank simple" v-model="escort.altura" placeholder="1.50 cm" type="text">
+                            <div class="uk-grid-collapse uk-flex uk-flex-middle" uk-grid>
+                              <div class="uk-width-auto">
+                                <img width="20" src="/assets/icons/height.svg" alt="">
+                              </div>
+                              <div class="uk-width-expand">
+                                <input class="uk-input uk-form-blank simple" v-model="escort.altura" placeholder="1.50 cm" type="text">
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
                       <div>
                         <div class="card-gray body">
                           <div class="uk-inline">
-                            <span><img width="20" class="uk-margin-small-right" src="/assets/icons/weight.svg" alt=""></span>
+                            <div class="uk-grid-collapse uk-flex-middle" uk-grid>
+                              <div class="uk-width-auto">
+                                <img width="20" src="/assets/icons/weight.svg" alt="">
+                              </div>
+                              <div class="uk-width-expand">
                             <input class="uk-input uk-form-blank simple" v-model="escort.peso" placeholder="86 kg." type="text">
+                          </div>
+                        </div>
                           </div>
                         </div>
                       </div>
