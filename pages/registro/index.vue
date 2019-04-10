@@ -251,8 +251,8 @@ export default {
           this.isregistering = false
           this.errormessage = null
           if(this.registertype == 'Escort' || this.registertype == 'Negocio'){
-             this.$swal("Estamos casi listos! ", "Acabamos de recibir tu solicitud, te enviaremos un mensaje al correo que nos dejaste.", "success")
-             axios.post('/api/notifyregister',{
+             this.$swal("Estamos casi listos! ", "Gracias por registarte en PrivadsVIP! Puedes iniciar sesión con los datos que nos entregaste.", "success")
+             axios.post('https://privadosvip.cl/api/notifyregister',{
                email: this.email
              })
              .then(response => {
