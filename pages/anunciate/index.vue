@@ -46,8 +46,8 @@
        </div>
        <div>
          <div>
-            <h4 class="hl">Las categorías se basan en los siguientes criterios</h4>
-            <p>Para anunciarte debes concurrir a una breve entrevista con tu cédula nacional de identidad, pasaporte, o documento de tu país de origen, idealmente solicita una hora de atención. El servicio esta disponible únicamente para personas mayores de 18 años y que actúan por plena decisión personal. Las fotografías deben estar en alta resolución, con el rostro descubierto y reconocible, nosotros nos encargaremos de difuminarlo en el caso que así lo desees. Los anuncios son intransferibles. Anuncios recibidos con posteridad a las 17hrs quedarán habilitados el día hábil siguiente.</p>
+            <h4 class="hl">Información y Requisitos</h4>
+            <p>Para anunciarte coordinaremos a una breve entrevista donde debes contar con tu cédula nacional de identidad, pasaporte, o documento de tu país de origen. El servicio esta disponible únicamente para personas mayores de 18 años y que actúan por plena decisión personal. Las fotografías deben ser de buena calidad, con el rostro descubierto, difuminaremos el rostro en el caso que así lo desees. Los anuncios son solo para la persona entrevistada y no se puede transferir o compartir con otra persona.</p>
          </div>
        </div>
      </div>

@@ -11,6 +11,7 @@ export const actions = {
       const ads  = await axios.get('/tipoanuncios')
       const whatsapp = await axios.get('/whatsapps')
       const tips = await axios.get('/consejos')
+      const forms = await axios.get('/formulariocalificacions')
 
       commit('categories/setCategories', data)
       commit('services/setServices', services.data)
@@ -19,5 +20,6 @@ export const actions = {
       commit('adstype/setAds', ads.data)
       commit('whatsapp/setWhatsappMessage', whatsapp.data)
       commit('tips/setTips', tips.data)
+      commit('formrating/setFormRatings', forms.data)
   }
 }

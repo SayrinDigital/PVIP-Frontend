@@ -227,7 +227,7 @@ export default {
 
       switch (this.registertype) {
         case 'Escort':
-          isblocked = true
+          isblocked = false
           break;
         case 'Negocio':
           isblocked = true

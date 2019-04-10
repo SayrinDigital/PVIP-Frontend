@@ -66,15 +66,24 @@ hr.uk-hr{
   }
 }
 
-#modal-tips{
+#modal-tips, #modal-qualify, #finalscoremodal{
   .uk-modal-dialog{
     background-color: $main-color;
     border-radius: 10px;
     h1,h2,h3,h4,h5,h6{
       color: #fff;
+      &.hl{
+        color: $hl-color;
+      }
     }
     p{
       color: #d1d1d1;
+    }
+    .commentary{
+      background-color: #3b3b3b;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 10px;
     }
   }
 }

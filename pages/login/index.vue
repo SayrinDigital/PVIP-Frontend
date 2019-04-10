@@ -14,7 +14,7 @@
          <form v-on:submit.prevent="login" id="login-form" class="uk-form-stacked">
 
            <div class="uk-margin uk-text-center">
-             <img width="200" src="/assets/blacklogo.png" alt="">
+             <nuxt-link to="/"><img width="200" src="/assets/blacklogo.png" alt=""></nuxt-link>
            </div>
 
         <div class="uk-margin">

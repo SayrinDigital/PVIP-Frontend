@@ -11,10 +11,7 @@
         <div class="uk-width-expand@s"></div>
         <div class="uk-width-expand@s">
           <div>
-            <p>Portal sobre escorts y masajistas para mayores de 18 años. Todas las anunciantes han sido entrevistadas personalmente.
-No poseemos vinculación laboral con las anunciantes y nos limitamos exclusivamente a brindar un servicio publicitario. Somos un medio publicitario legalmente constituido.
-Nos reservamos el derecho a publicación.
-Queda prohibida la copia o reproducción, total o parcial.</p>
+            <p>Portal sobre escorts, masajistas y servicios para adultos, web para mayores de 18 años. Todas las anunciantes han sido entrevistadas personalmente. No estamos vinculados laboralmente con las anunciantes y nos limitamos exclusivamente al servicio publicitario. Nos reservamos el derecho a publicación.</p>
           </div>
         </div>
       </div>
