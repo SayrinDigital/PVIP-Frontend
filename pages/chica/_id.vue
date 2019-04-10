@@ -269,20 +269,21 @@
                       <div>
                         <div>
                           <div class="rating">
+                            <h2>Califícame</h2>
                           <form v-on:submit.prevent="sendCalification()">
                             <div v-for="form in formrating" :key="form.id">
                               <h3 class="hl">{{ form.nombre }}</h3>
                                 <table class="uk-table uk-table-small uk-table-responsive">
                                   <thead>
                                     <tr>
-                                      <th>Característica</th>
-                                      <th>Puntaje</th>
+                                      <th><h5>Característica</h5></th>
+                                      <th><h5>Puntaje</h5></th>
                                     </tr>
                                   </thead>
                                   <tbody>
                                     <tr v-for="option in form.campos">
-                                      <td>{{ option.nombre }}</td>
-                                      <td><input required type="number" v-model="option.puntaje" min="1" max="10" placeholder="0"></td>
+                                      <td><p>{{ option.nombre }}</p></td>
+                                      <td><input class="uk-input" required type="number" v-model="option.puntaje" min="1" max="10" placeholder="0"></td>
                                     </tr>
                                   </tbody>
                                 </table>

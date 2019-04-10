@@ -76,6 +76,13 @@ hr.uk-hr{
         color: $hl-color;
       }
     }
+    .uk-input, .uk-textarea{
+      border-radius: 10px;
+      border: 0;
+      background-color: #383838;
+      color: #fff;
+      font-family: $t-font;
+    }
     p{
       color: #d1d1d1;
     }
