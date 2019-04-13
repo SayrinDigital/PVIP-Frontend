@@ -117,6 +117,7 @@ auth: {
     }
   },
   redirect: {
+    home: '/perfil',
     login: '/',
     logout: '/login'
   }
