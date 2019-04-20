@@ -708,6 +708,43 @@ ul.list-anouncehere{
   }
 }
 
+#mainsearch{
+  min-height: 50px;
+}
+
+.multiselect__tags{
+  min-height: 70px;
+  font-size: 1rem;
+}
+
+.multiselect__element{
+  span{
+    min-height: 45px;
+  }
+}
+
+.multiselect__option--disabled{
+  background: $main-color;
+  text-transform: uppercase;
+}
+
+.multiselect__option--highlight{
+  background: $main-color;
+  color: #fff;
+}
+
+.multiselect__option--highlight:after{
+  background: $main-color;
+}
+
+.filter-button{
+  background: $hl-color;
+  color: #fff;
+  text-transform: capitalize;
+  font-size: 1.3rem;
+  border-radius: 150px;
+}
+
 @media (max-width: 900px){
   .main-grid{
     article{

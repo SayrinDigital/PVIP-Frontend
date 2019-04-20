@@ -14,12 +14,17 @@
     </section>
 
 
-        <Searcher></Searcher>
+        <Searcher :tags="finaltags"  @filtered="filterthis"></Searcher>
 
     <section v-if="category.escorts" class="uk-section">
       <div class="uk-container tm-container-medium">
         <div class="uk-child-width-1-4@m uk-child-width-1-2 uk-grid-small  uk-grid" uk-grid>
-          <GirlCard type="hlgirl" :escort="escort"  v-for="escort in category.escorts" :key="escort.id"></GirlCard>
+          <div v-if="hasbeenfiltered">
+            <GirlCard type="hlgirl" :escort="escort"  v-for="escort in filteredescort" :key="escort.id"></GirlCard>
+          </div>
+          <div v-else>
+            <GirlCard type="hlgirl" :escort="escort"  v-for="escort in category.escorts" :key="escort.id"></GirlCard>
+            </div>
         </div>
       </div>
     </section>
@@ -36,12 +41,66 @@ export default {
 
   async asyncData ({ params }) {
    let { data } = await axios.get('/categorias/'+ params.id)
-   return { category: data }
+   let tags = await axios.get('/etiquetas')
+   return { category: data, tags: tags.data }
  },
  data(){
    return{
-      baseUrl: 'https://api.privadosvip.cl'
+      baseUrl: 'https://api.privadosvip.cl',
+      filteredescort: null,
+      hasbeenfiltered: false
    }
+ },
+ filterthis (value) {
+      //this.filteredescort = this.escorts
+
+      if(!value){
+        this.hasbeenfiltered = false
+      }else{
+        this.hasbeenfiltered = true
+
+      var tofilterescorts = this.category.escorts
+      var filter = tofilterescorts.filter((escort, index, array ) => {
+        return value.every(i => escort.etiquetas.includes(i))
+      })
+
+      this.filteredescort = filter
+      }
+
+      console.log(filter) // someValue
+    },
+ computed: {
+finaltags: function() {
+
+      var ftags = []
+
+      for (var i = 0; i < this.tags.length; i++) {
+
+        var mult = ' '
+
+        if (this.tags[i].multiple) {
+          mult = ' '
+        }
+
+        var options =  this.tags[i].opciones.split(',')
+        var foption = []
+
+        for(var j=0; j<options.length; j++){
+          if(this.tags[i].nombre == 'otros'){
+          foption.push(options[j])
+        }else{
+          foption.push(this.tags[i].nombre + ' ' + options[j])
+        }
+        }
+
+        ftags.push({
+          name: this.tags[i].nombre + mult,
+          options: foption
+        })
+
+      }
+      return ftags
+    }
  },
    components: {
      GirlCard,

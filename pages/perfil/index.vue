@@ -240,7 +240,7 @@
           </form>
           <div v-if="escort.fotos">
             <div class="uk-child-width-1-4@m uk-child-width-1-2 uk-grid-medium uk-grid" uk-grid>
-              <div v-if="foto.imagen" v-for="foto in escort.fotos">
+              <div v-if="foto.imagen" :key="foto.id" v-for="foto in escort.fotos">
                   <div class="uk-background-cover gallery-girl-photo uk-position-relative" uk-img :data-src="baseUrl + foto.imagen.url">
                     <div class="uk-position-bottom-right">
                       <div class="uk-overlay">
@@ -255,6 +255,9 @@
       </div>
 
     </div>
+      <div v-if="$auth.user.negocio" class="uk-container uk-container-small">
+        <BusinessPanel :business="escort"></BusinessPanel>
+      </div>
   </div>
 
 </div>
@@ -262,6 +265,7 @@
 
 <script>
 import Multiselect from 'vue-multiselect'
+import BusinessPanel from '~/components/Panel/Business'
 import axios from '~/plugins/axios'
 import {en, es} from 'vue-moment-datepicker/dist/locale'
 
@@ -271,11 +275,17 @@ export default {
       data
     } = await axios.get('/etiquetas')
     let services = await axios.get('/escortservicios')
-    let escort = await axios.get('/escorts/' + context.app.$auth.user.escort._id)
+    let userinfo = null
+    if(context.app.$auth.user.escort){
+      userinfo = await axios.get('/escorts/' + context.app.$auth.user.escort._id)
+    }
+    if(context.app.$auth.user.negocio){
+      userinfo = await axios.get('/negocios/' + context.app.$auth.user.negocio._id)
+    }
     return {
       tags: data,
       services: services.data,
-      escort: escort.data
+      escort: userinfo.data
     }
   },
   computed: {
@@ -313,6 +323,7 @@ export default {
   },
   components: {
     Multiselect,
+    BusinessPanel
   },
   data() {
     return {

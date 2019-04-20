@@ -17,6 +17,7 @@
         <a class="user-button uk-text-capitalize"><span class="uk-icon uk-margin-small-right" uk-icon="icon: user"></span> {{ $auth.user.nombre }}</a>
         <div uk-dropdown>
           <ul class="uk-nav uk-dropdown-nav">
+            <li v-if="$auth.user.role.name == 'Negocio'"><nuxt-link to="/perfil"><span class="uk-margin-small-right" uk-icon="settings"></span> Modificar Perfil</nuxt-link></li>
             <li v-if="$auth.user.role.name == 'Escort'"><nuxt-link to="/perfil"><span class="uk-margin-small-right" uk-icon="settings"></span> Modificar Perfil</nuxt-link></li>
             <li><a @click="$auth.logout()"><span class="uk-margin-small-right" uk-icon="sign-out"></span> Cerrar Sesión</a></li>
           </ul>
@@ -41,6 +42,7 @@
             <a class="user-button  uk-text-capitalize"><span class="uk-icon uk-margin-small-right" uk-icon="icon: user"></span> {{ $auth.user.nombre }}</a>
             <div uk-dropdown>
               <ul class="uk-nav uk-dropdown-nav">
+                <li v-if="$auth.user.role.name == 'Negocio'"><nuxt-link to="/perfil"><span class="uk-margin-small-right" uk-icon="settings"></span> Modificar Perfil</nuxt-link></li>
                 <li v-if="$auth.user.role.name == 'Escort'"><nuxt-link to="/perfil"><span class="uk-margin-small-right" uk-icon="settings"></span> Modificar Perfil</nuxt-link></li>
                 <li><a @click="$auth.logout()"><span class="uk-margin-small-right" uk-icon="sign-out"></span> Cerrar Sesión</a></li>
               </ul>

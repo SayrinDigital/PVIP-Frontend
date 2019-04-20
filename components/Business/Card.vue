@@ -5,7 +5,7 @@
       <div v-if="business.avatar" class="uk-background-cover first-section" :data-src="baseUrl + business.avatar.url" uk-img>
       </div>
       <div class="footer uk-text-center">
-        <h4 class="light" v-if="business.user">{{ business.user.nombre }}</h4>
+        <h4 class="light uk-text-capitalize" v-if="business.user">{{ business.user.nombre }}</h4>
       </div>
     </nuxt-link>
   </div>

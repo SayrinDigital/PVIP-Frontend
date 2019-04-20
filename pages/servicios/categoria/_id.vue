@@ -14,7 +14,7 @@
     <section class="uk-section">
       <div class="uk-container tm-container-medium">
         <div class="uk-child-width-1-4@m uk-child-width-1-3@s uk-child-width-1-2" uk-grid>
-          <Card :business="busi" v-for="busi in business.negocios" :key="busi.id"></Card>
+          <Card :business="busi" v-for="busi in negocios" :key="busi.id"></Card>
         </div>
       </div>
     </section>
@@ -33,7 +33,8 @@ export default {
 
   async asyncData ({ params }) {
    let { data } = await axios.get('/servicios/'+ params.id)
-   return { business: data }
+   let busins = await axios.get('/negocios?servicio='+ params.id)
+   return { business: data, negocios: busins.data }
  },
   components: {
     Card
