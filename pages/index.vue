@@ -15,6 +15,7 @@
         </div>
       </div>
       <div v-else class="main-grid">
+        <h1>No filtered</h1>
         <GirlCard v-if="!escort.user.blocked" type="hlgirl" :escort="escort" v-for="escort in firsthalf" :key="escort.id"></GirlCard>
         <GirlCard v-if="!escort.user.blocked" type="mediumgirl" :escort="escort" v-for="escort in secondhalf" :key="escort.id"></GirlCard>
         <GirlCard v-if="!escort.user.blocked" type="basicgirl" :escort="escort" v-for="escort in thirdhalf" :key="escort.id"></GirlCard>
@@ -112,8 +113,7 @@ export default {
   methods: {
     filterthis (value) {
       //this.filteredescort = this.escorts
-
-      if(!value){
+      if(value.length == 0){
         this.hasbeenfiltered = false
       }else{
         this.hasbeenfiltered = true
@@ -125,8 +125,6 @@ export default {
 
       this.filteredescort = filter
       }
-
-      console.log(filter) // someValue
     },
      loadingScreen(){
        var tl = new TimelineLite()
