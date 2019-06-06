@@ -1,5 +1,5 @@
 <template>
-<article :class="[{ 'first-section' : type=='hlgirl', 'medium-section' : type=='mediumgirl', 'basic-section' : type=='basicgirl' }]" class="article-escort" v-if="escort.avatar">
+<article :class="[{ 'first-section' : type=='grande', 'medium-section' : type==' mediano', 'basic-section' : type==' pequeño' }]" class="article-escort" v-if="escort.avatar">
   <nuxt-link :to="{name: 'chica-id', params: { id: escort.id } }" class="girl-card uk-display-block">
     <div class="uk-background-cover bg" :data-src="baseUrl + escort.avatar.url" uk-img>
     </div>

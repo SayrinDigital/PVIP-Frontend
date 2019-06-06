@@ -11,13 +11,13 @@
       </div>-->
       <div v-if="hasbeenfiltered">
         <div class="main-grid">
-          <GirlCard v-if="!escort.user.blocked" type="hlgirl" :escort="escort" v-for="escort in filteredescort" :key="escort.id"></GirlCard>
+          <GirlCard v-if="!escort.user.blocked" :type="escort.tamanocontenedor" :escort="escort" v-for="escort in filteredescort" :key="escort.id"></GirlCard>
         </div>
       </div>
       <div v-else class="main-grid">
-        <GirlCard v-if="!escort.user.blocked" type="hlgirl" :escort="escort" v-for="escort in firsthalf" :key="escort.id"></GirlCard>
-        <GirlCard v-if="!escort.user.blocked" type="mediumgirl" :escort="escort" v-for="escort in secondhalf" :key="escort.id"></GirlCard>
-        <GirlCard v-if="!escort.user.blocked" type="basicgirl" :escort="escort" v-for="escort in thirdhalf" :key="escort.id"></GirlCard>
+        <GirlCard v-if="!escort.user.blocked" :type="escort.tamanocontenedor" :escort="escort" v-for="escort in firsthalf" :key="escort.id"></GirlCard>
+        <GirlCard v-if="!escort.user.blocked" :type="escort.tamanocontenedor" :escort="escort" v-for="escort in secondhalf" :key="escort.id"></GirlCard>
+        <GirlCard v-if="!escort.user.blocked" :type="escort.tamanocontenedor" :escort="escort" v-for="escort in thirdhalf" :key="escort.id"></GirlCard>
       </div>
     </div>
   </div>
