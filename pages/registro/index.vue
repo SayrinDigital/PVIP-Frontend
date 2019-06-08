@@ -151,7 +151,7 @@ export default {
               username: this.username,
               email: this.email,
               password: this.password,
-              nombre: this.name
+              nombre: this.name,
             }
           )
           .then(response => {
@@ -180,7 +180,8 @@ export default {
     createEscort(id){
       axios.post(
         '/escorts/', {
-          user: id
+          user: id,
+          tamanocontenedor: "grande"
         }
       )
       .then(response => {
@@ -262,7 +263,7 @@ export default {
                  .then(() => console.log('logged in'))
                  .catch(error => console.log(error))
 
-             this.$swal("Estamos casi listos! ", "Gracias por registarte en PrivadsVIP! Te redigiremos automaticamente a tu perfil.", "success")
+             this.$swal("Estamos casi listos! ", "Gracias por registrate en PrivadosVIP! Te redigiremos automaticamente a tu perfil.", "success")
              axios.post('https://privadosvip.cl/api/notifyregister',{
                email: this.email
              })
