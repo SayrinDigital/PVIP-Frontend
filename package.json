@@ -23,7 +23,7 @@
     "filepond-plugin-image-preview": "^4.0.5",
     "gsap": "^2.1.2",
     "js-cookie": "^2.2.0",
-    "nodemailer": "^6.1.0",
+    "nodemailer": "^6.4.16",
     "nuxt": "^2.4.0",
     "uikit": "^3.0.3",
     "vue-awesome-swiper": "^3.1.3",
