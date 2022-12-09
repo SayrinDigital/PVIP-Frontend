@@ -17,7 +17,7 @@
     "babel-runtime": "^6.26.0",
     "body-parser": "^1.18.3",
     "cross-env": "^5.2.0",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "filepond": "^4.3.7",
     "filepond-plugin-file-validate-type": "^1.2.4",
     "filepond-plugin-image-preview": "^4.0.5",
